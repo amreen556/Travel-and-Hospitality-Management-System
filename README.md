@@ -9,6 +9,7 @@ The project follows a layered architecture and demonstrates frontend–backend i
 ---
 
 ## 🛠️ Tech Stack
+
 - Backend: .NET 8 Web API
 - Frontend: Angular 17
 - Database: SQL Server
@@ -18,6 +19,7 @@ The project follows a layered architecture and demonstrates frontend–backend i
 ---
 
 ## 📂 Project Structure
+
 Backend/ → .NET 8 Web API
 Frontend/ → Angular 17 application
 
@@ -34,10 +36,12 @@ Frontend/ → Angular 17 application
 4. Run the following commands to connect backend to database:
 
 ```powershell```
+
 Add-Migration MigrationOne -Context ApplicationDbContext
 Update-Database -Context ApplicationDbContext
 
 ##Run the project
+
 dotnet run
 
 Backend API will run at:
@@ -50,9 +54,11 @@ https://localhost:5001
 --Install dependencies:
 
 npm install
+
 ngx-cookie-service@16
 
 --Start Angular application:
+
 ng serve
 
 --Open browser:
@@ -68,15 +74,15 @@ http://localhost:4200
 
 ✅ Features
 
-RESTful APIs using .NET 8
+-RESTful APIs using .NET 8
 
-Angular 17 components and services
+-Angular 17 components and services
 
-CRUD operations
+-CRUD operations
 
-EF Core DB First approach
+-EF Core DB First approach
 
-Clean separation of frontend and backend
+-Clean separation of frontend and backend
 
 👩‍💻 Author
 
