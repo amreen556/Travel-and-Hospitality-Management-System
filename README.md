@@ -26,44 +26,6 @@ Frontend/ → Angular 17 application
 
 ---
 
-## 🚀 How to Run the Project
-
-### 🔹 Backend (.NET 8 Web API)
-
-1. Open the **Backend** folder in **Visual Studio**
-2. Update SQL Server connection string in `appsettings.json`
-3. Open **Package Manager Console**
-4. Run the following commands to connect backend to database:
-
-```powershell```
-
-Add-Migration MigrationOne -Context ApplicationDbContext
-Update-Database -Context ApplicationDbContext
-
-##Run the project
-
-dotnet run
-
-Backend API will run at:
-https://localhost:5001
-
-🔹 Frontend (Angular 17)
-
-*Open Frontend folder in VS Code
-
---Install dependencies:
-
-npm install
-
-ngx-cookie-service@16
-
---Start Angular application:
-
-ng serve
-
---Open browser:
-http://localhost:4200
-
 🗄️ Database
 
 -SQL Server is used as the database
