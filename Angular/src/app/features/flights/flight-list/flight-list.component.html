@@ -1,0 +1,38 @@
+<div class="container mt-4">
+  <h2 class="mb-3">Flight List</h2>
+  <button class="btn btn-primary mb-3" (click)="addFlight()">Add Flight</button>
+
+  <div class="row">
+    <div class="col-md-4" *ngFor="let flight of flights">
+      <div class="card mb-3">
+        <img
+          *ngIf="flight.imageUrl"
+          [src]="flight.imageUrl"
+          class="card-img-top"
+          alt="Flight Image"
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ flight.airline }}</h5>
+          <p class="card-text text-black">
+            Departure: {{ flight.departure }}<br />
+            Arrival: {{ flight.arrival }}<br />
+            Price: ₹{{ flight.price }}<br />
+            Availability: {{ flight.availability }}
+          </p>
+          <button
+            class="btn btn-warning me-2"
+            (click)="editFlight(flight.flightID)"
+          >
+            Edit
+          </button>
+          <button
+            class="btn btn-danger"
+            (click)="deleteFlight(flight.flightID)"
+          >
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

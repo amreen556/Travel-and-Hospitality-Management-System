@@ -1,0 +1,104 @@
+<div class="container mt-4">
+  <!-- ✅ My Reviews -->
+  <h2 class="mb-3">My Reviews</h2>
+  <div *ngIf="myReviews.length > 0; else noMyReviews">
+    <div *ngFor="let review of myReviews" class="review-card mb-3 p-3 border rounded shadow-sm">
+      <!-- ✅ Dynamic product label -->
+      <p>
+        <strong>
+          {{
+            review.productType === 'flight' ? 'Flight' :
+            review.productType === 'package' ? 'Package' :
+            'Hotel'
+          }}:
+        </strong>
+        {{
+          review.productName ||
+          (review.productType === 'flight' ? 'Unknown Flight' :
+           review.productType === 'package' ? 'Unknown Package' :
+           'Unknown Hotel')
+        }}
+      </p>
+
+      <div><strong>Rating:</strong>
+        <div class="star-display">
+          <span *ngFor="let star of [1,2,3,4,5]" class="star" [class.filled]="star <= review.rating">★</span>
+        </div>
+      </div>
+
+      <p class="text-black"><strong>Comment:</strong> {{ review.comment }}</p>
+      <div class="d-flex gap-2">
+        <button class="btn btn-sm btn-outline-primary" (click)="editReview(review)">Edit</button>
+        <button class="btn btn-sm btn-outline-danger" (click)="deleteReview(review.reviewID)">Delete</button>
+      </div>
+    </div>
+  </div>
+  <ng-template #noMyReviews>
+    <p class="text-muted">You haven’t submitted any reviews yet.</p>
+  </ng-template>
+
+  <!-- ✅ Edit Mode -->
+  <div *ngIf="editingReviewId" class="mt-4">
+    <h4>Edit Review</h4>
+    <form [formGroup]="reviewForm" (ngSubmit)="submitReview()">
+      <div class="mb-3">
+        <label class="form-label">Rating:</label>
+        <div class="star-rating">
+          <span *ngFor="let star of [1,2,3,4,5]" class="star" [class.filled]="star <= selectedRating" (click)="onStarClick(star)">★</span>
+        </div>
+        <input type="hidden" formControlName="rating" />
+        <div *ngIf="reviewForm.get('rating')?.invalid && reviewForm.get('rating')?.touched" class="text-danger">
+          Rating is required and must be between 1 and 5.
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Comment:</label>
+        <textarea formControlName="comment" required class="form-control"
+                  [class.is-invalid]="reviewForm.get('comment')?.invalid && reviewForm.get('comment')?.touched"></textarea>
+        <div *ngIf="reviewForm.get('comment')?.invalid && reviewForm.get('comment')?.touched" class="text-danger">
+          Comment is required.
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-success me-2" [disabled]="reviewForm.invalid">Update</button>
+      <button type="button" class="btn btn-secondary" (click)="cancelEdit()">Cancel</button>
+    </form>
+  </div>
+
+  <hr class="my-4" />
+
+  <!-- ✅ Other Reviews -->
+  <h2 class="mb-3">Other Reviews</h2>
+  <div *ngIf="otherReviews.length > 0; else noOtherReviews">
+    <div *ngFor="let review of otherReviews" class="review-card mb-3 p-3 border rounded bg-light">
+      <!-- ✅ Dynamic product label -->
+      <p>
+        <strong>
+          {{
+            review.productType === 'flight' ? 'Flight' :
+            review.productType === 'package' ? 'Package' :
+            'Hotel'
+          }}:
+        </strong>
+        {{
+          review.productName ||
+          (review.productType === 'flight' ? 'Unknown Flight' :
+           review.productType === 'package' ? 'Unknown Package' :
+           'Unknown Hotel')
+        }}
+      </p>
+
+      <div><strong>Rating:</strong>
+        <div class="star-display">
+          <span *ngFor="let star of [1,2,3,4,5]" class="star" [class.filled]="star <= review.rating">★</span>
+        </div>
+      </div>
+
+      <p><strong>Comment:</strong> {{ review.comment }}</p>
+    </div>
+  </div>
+  <ng-template #noOtherReviews>
+    <p class="text-muted">No other reviews available at the moment.</p>
+  </ng-template>
+</div>

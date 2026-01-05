@@ -1,0 +1,43 @@
+<div class="container">
+  <h2>Support Tickets (Admin View)</h2>
+
+  <label for="statusFilter">Filter by Status:</label>
+  <select [(ngModel)]="selectedStatus" (change)="filterByStatus()">
+    <option value="">All</option>
+    <option value="Open">Open</option>
+    <option value="In Progress">In Progress</option>
+    <option value="Resolved">Resolved</option>
+  </select>
+
+  <table class="table table-bordered mt-3">
+    <thead>
+      <tr>
+        <th>Ticket ID</th>
+        <th>User ID</th>
+        <th>Issue</th>
+        <th>Status</th>
+        <th>Assigned Agent</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let ticket of filteredTickets">
+        <td>{{ ticket.ticketID }}</td>
+        <td>{{ ticket.userID }}</td>
+        <td>{{ ticket.issue }}</td>
+        <td>{{ ticket.status }}</td>
+        <td>{{ ticket.assignedAgent }}</td>
+        <td>
+                    <select #statusInput aria-label="New Status" name="new-status">
+            <option value="">Select Status</option>
+            <option value="Open">Open</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Resolved">Resolved</option>
+          </select>
+          <input type="text" placeholder="Assign Agent" #agentInput name="new-agent" />
+          <button class="btn btn-success" (click)="updateTicket(ticket, statusInput, agentInput)">Update</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

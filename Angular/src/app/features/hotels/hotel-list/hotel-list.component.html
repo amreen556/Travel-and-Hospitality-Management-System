@@ -1,0 +1,22 @@
+<div class="container mt-4">
+  <h2 class="mb-3">Hotel List</h2>
+  <button class="btn btn-primary mb-3" (click)="addHotel()">Add Hotel</button>
+  <div class="row">
+    <div class="col-md-4" *ngFor="let hotel of hotels">
+      <div class="card mb-3">
+        <img *ngIf="hotel.imageUrl" [src]="hotel.imageUrl" class="card-img-top" alt="Hotel Image" />
+        <div class="card-body">
+          <h5 class="card-title">{{ hotel.name }}</h5>
+          <p class="card-text text-black">
+            Location: {{ hotel.location }}<br>
+            Rooms: {{ hotel.roomsAvailable }}<br>
+            Rating: {{ hotel.rating }}<br>
+            Price: ₹{{ hotel.pricePerNight }}
+          </p>
+          <button class="btn btn-warning me-2" (click)="editHotel(hotel.hotelID)">Edit</button>
+          <button class="btn btn-danger" (click)="deleteHotel(hotel.hotelID)">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

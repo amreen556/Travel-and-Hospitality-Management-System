@@ -1,0 +1,12 @@
+/* Add any custom styles for the payment component */
+.card {
+  margin-bottom: 1rem;
+}
+
+.alert-success {
+  margin-top: 2rem;
+}
+
+h2, h5, p{
+  color: #000;
+}

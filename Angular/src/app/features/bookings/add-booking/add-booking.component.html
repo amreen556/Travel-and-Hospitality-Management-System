@@ -1,0 +1,40 @@
+<div class="container mt-4">
+  <h2 class="mb-3">Add New Booking</h2>
+
+  <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="userID" class="form-label">User ID</label>
+      <input type="text" id="userID" formControlName="userID" class="form-control" placeholder="Enter User ID" />
+    </div>
+
+    <div class="mb-3">
+      <label for="type" class="form-label">Booking Type</label>
+      <input type="text" id="type" formControlName="type" class="form-control" placeholder="Enter booking type (e.g., Hotel, Travel)" />
+    </div>
+
+    <div class="mb-3">
+      <label for="status" class="form-label">Status</label>
+      <select id="status" formControlName="status" class="form-select">
+        <option value="">Select status</option>
+        <option value="Pending">Pending</option>
+        <option value="Confirmed">Confirmed</option>
+        <option value="Cancelled">Cancelled</option>
+      </select>
+    </div>
+
+    
+<div class="mb-3">
+  <label for="payment2Id" class="form-label">Payment ID</label>
+  <input
+    type="text"
+    id="payment2Id"
+    formControlName="payment2Id"
+    class="form-control"
+    placeholder="Enter Payment ID (optional)"
+  />
+</div>
+
+    <button type="submit" class="btn btn-success" [disabled]="bookingForm.invalid">Add Booking</button>
+    <button type="button" class="btn btn-secondary ms-2" routerLink="/bookings">Cancel</button>
+  </form>
+</div>

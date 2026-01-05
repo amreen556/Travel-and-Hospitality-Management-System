@@ -1,0 +1,39 @@
+<div class="container mt-4">
+  <h2 class="mb-3">Invoice List</h2>
+
+  <div *ngIf="loading">Loading invoices...</div>
+  <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+
+  <table *ngIf="!loading && invoices.length > 0" class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Invoice ID</th>
+        <th>Booking ID</th>
+        <th>User ID</th>
+        <th>Total Amount (₹)</th>
+        <th>Timestamp</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let invoice of invoices">
+        <td>{{ invoice.invoiceID }}</td>
+        <td>{{ invoice.bookingID }}</td>
+        <td>{{ invoice.userID }}</td>
+        <td>{{ invoice.totalAmount }}</td>
+        <td>{{ invoice.timestamp | date:'short' }}</td>
+        <td>
+          <a class="btn btn-info btn-sm me-1" [routerLink]="['/invoices/details', invoice.invoiceID]">View</a>
+          <a class="btn btn-warning btn-sm me-1" [routerLink]="['/invoices/edit', invoice.invoiceID]">Edit</a>
+          <a class="btn btn-danger btn-sm" [routerLink]="['/invoices/delete', invoice.invoiceID]">Delete</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="!loading && invoices.length === 0" class="alert alert-info">
+    No invoices found.
+  </div>
+
+  <a class="btn btn-success mt-3" routerLink="/invoices/add">Add New Invoice</a>
+</div>

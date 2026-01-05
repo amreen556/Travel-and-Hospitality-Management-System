@@ -1,0 +1,24 @@
+<div class="row justify-content-center  align-items-center mt-5" >
+  <div class="col-md-8 text-center ">
+    <h2 class="text-white">Admin Section</h2>
+    <a class="btn btn-primary mt-3 me-2" routerLink="/hotels">Go to Hotels</a>
+    <a class="btn btn-primary mt-3" routerLink="/flights">Go to Flights</a>
+    <a class="btn btn-primary mt-3 ms-2" routerLink="/packages">Go to Packages</a>
+    <!-- <a class="btn btn-primary mt-3 ms-2" routerLink="/invoices">Go to Invoices</a> -->
+    <!-- <a class="btn btn-primary mt-3 ms-2" routerLink="/itineraries">Go to Itinerary</a> -->
+    <a class="btn btn-primary mt-3 ms-2" routerLink="/review">Go to review</a>
+    <!-- <a class="btn btn-primary mt-3 ms-2" routerLink="/support-ticket">Go to support ticket</a> -->
+    <!-- <a class="btn btn-primary mt-3 ms-2" routerLink="/bookings">Go to Bookings</a> -->
+    <!-- <a class="btn btn-primary mt-3 ms-2" routerLink="/users">Go to Users</a> -->
+      <a class="btn btn-primary mt-3 ms-2" routerLink="/allorders">Go to All Orders</a>
+    <ng-container *ngIf="isAdmin()">
+  <a class="btn btn-primary mt-3 ms-2" routerLink="/advanced-user-management">
+    Go to Advanced User Management
+  </a>
+</ng-container>
+
+      
+
+  </div>
+
+</div>

@@ -1,0 +1,14 @@
+<div class="container mt-4">
+  <h2 class="mb-3">Edit Package</h2>
+  <form [formGroup]="packageForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3" *ngFor="let field of ['name', 'includedHotels', 'includedFlights', 'activities', 'price']">
+      <label [for]="field" class="form-label">{{ field | titlecase }}</label>
+      <input [type]="field === 'price' ? 'number' : 'text'"
+             [id]="field"
+             [formControlName]="field"
+             class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-success" [disabled]="packageForm.invalid">Update Package</button>
+    <button type="button" class="btn btn-secondary ms-2" routerLink="/packages">Cancel</button>
+  </form>
+</div>

@@ -1,0 +1,23 @@
+<div class="container mt-4">
+  <h2 class="mb-3">Add New Invoice</h2>
+
+  <form [formGroup]="invoiceForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="bookingID" class="form-label">Booking ID</label>
+      <input type="text" id="bookingID" formControlName="bookingID" class="form-control" placeholder="Enter Booking ID" />
+    </div>
+
+    <div class="mb-3">
+      <label for="userID" class="form-label">User ID</label>
+      <input type="text" id="userID" formControlName="userID" class="form-control" placeholder="Enter User ID" />
+    </div>
+
+    <div class="mb-3">
+      <label for="totalAmount" class="form-label">Total Amount (₹)</label>
+      <input type="number" id="totalAmount" formControlName="totalAmount" class="form-control" placeholder="Enter amount" />
+    </div>
+
+    <button type="submit" class="btn btn-success" [disabled]="invoiceForm.invalid">Add Invoice</button>
+    <button type="button" class="btn btn-secondary ms-2" routerLink="/invoices">Cancel</button>
+  </form>
+</div>

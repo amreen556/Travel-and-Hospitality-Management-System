@@ -1,0 +1,89 @@
+<div class="container mt-4">
+  <div class="row mb-3">
+    <div class="col-md-3">
+      <input type="text" [(ngModel)]="searchTerm" placeholder="Search packages by name..." class="form-control">
+    </div>
+    <div class="col-md-3">
+      <select [(ngModel)]="priceRange" class="form-select custom-dropdown">
+        <option value="all">All Prices</option>
+        <option value="budget">Budget (≤ ₹5000)</option>
+        <option value="mid">Mid-Range (₹5001 - ₹10000)</option>
+        <option value="luxury">Luxury (> ₹10000)</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+      <button (click)="clearFilters()" class="btn btn-outline-secondary btn-primary w-100">Clear Filters</button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-3 col-md-6 mb-4" *ngFor="let package of filteredPackages">
+      <div class="flip-card h-100">
+        <div class="flip-card-inner" #flipper>
+
+          <!-- FRONT SIDE -->
+          <div class="flip-card-front">
+            <div class="card tour-package-card h-100 border-0 shadow-sm">
+              <img [src]="package.imageUrl" class="card-img-top" [alt]="package.name" />
+              <div class="card-body text-center d-flex flex-column">
+                <h5 class="card-title fw-bold fs-6">{{ package.name }}</h5>
+                <p class="card-text text-primary fw-bold">₹{{ package.price }}</p>
+                <button (click)="flipper.classList.add('is-flipped')" class="btn btn-outline-primary mt-auto">
+                  View Details
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- BACK SIDE -->
+          <div class="flip-card-back">
+            <div class="card tour-package-card h-100 border-0 shadow-xxl">
+              <div class="card-body d-flex flex-column justify-content-center align-items-center text-center p-2">
+                <h5 class="card-title fw-bold">Package: {{ package.name }}</h5>
+                <p class="card-text text-muted">Hotels: {{ package.includedHotels }}</p>
+                <p class="card-text text-muted">Flights: {{ package.includedFlights }}</p>
+                <p class="card-text text-muted">Activities: {{ package.activities }}</p>
+                <p class="card-text text-muted">Price: ₹{{ package.price }}</p>
+
+                <!-- ✅ Review Form -->
+                <form [formGroup]="reviewForms[package.packageID]" (ngSubmit)="submitReview(package.packageID)" class="w-100 mb-3 text-start">
+                  <label class="form-label">Rating:</label>
+                  <div class="star-rating mb-2">
+                    <span *ngFor="let star of [1,2,3,4,5]"
+                          class="star"
+                          [class.filled]="selectedRating[package.packageID] >= star"
+                          (click)="onStarClick(star, package.packageID)">★</span>
+                  </div>
+                  <input type="hidden" formControlName="rating" />
+
+                  <label class="form-label">Comment:</label>
+                  <textarea formControlName="comment" required class="form-control mb-2" rows="2" style="font-size: 12px;"></textarea>
+
+                  <button type="submit" class="btn btn-sm btn-success w-100">Submit Review</button>
+                </form>
+
+                <!-- ✅ Add to Cart Button -->
+                <div class="d-flex flex-row gap-2 align-items-center">
+                  <button class="btn btn-warning btn-sm" (click)="addToCart(package)">Add to Cart</button>
+                  <button (click)="flipper.classList.remove('is-flipped')" class="btn btn-primary btn-sm">Back</button>
+                </div>
+
+                <!-- ✅ Other Reviews
+                <div class="mt-3 text-start w-100" *ngIf="allReviews && allReviews[package.packageID] && allReviews[package.packageID].length > 0">
+                  <h6 class="fw-bold">Other Reviews</h6>
+                  <div *ngFor="let review of allReviews[package.packageID]">
+                    <p *ngIf="review.productType === 'package'"><strong>Package:</strong> {{ review.productName }}</p>
+                    <p><strong>Rating:</strong> {{ review.rating }}</p>
+                    <p><strong>Comment:</strong> {{ review.comment }}</p>
+                    <hr />
+                  </div>
+                </div> -->
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

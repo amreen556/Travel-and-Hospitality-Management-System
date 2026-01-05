@@ -1,0 +1,18 @@
+<div class="container mt-4">
+  <h2 class="mb-3">Edit User</h2>
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3" *ngFor="let field of ['name', 'email', 'password', 'role', 'contactNumber']">
+      <label [for]="field" class="form-label">{{ field | titlecase }}</label>
+      <input
+        [type]="field === 'email' ? 'email' : field === 'password' ? 'password' : 'text'"
+        [id]="field"
+        [formControlName]="field"
+        class="form-control"
+        [placeholder]="'Enter ' + field"
+      />
+    </div>
+
+    <button type="submit" class="btn btn-success" [disabled]="userForm.invalid">Update User</button>
+    <button type="button" class="btn btn-secondary ms-2" routerLink="/users">Cancel</button>
+  </form>
+</div>

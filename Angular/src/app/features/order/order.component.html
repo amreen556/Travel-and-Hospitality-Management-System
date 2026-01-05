@@ -1,0 +1,24 @@
+<div class="container mt-4">
+  <h2 class="text-white">My Bookings</h2>
+
+  <div *ngIf="orders.length === 0" class="alert alert-info">
+    No Bookings found.
+  </div>
+
+  <div class="row">
+    <div *ngFor="let order of orders" class="col-md-4 mb-4">
+      <div class="card h-100">
+        <div class="card-header">
+          <h5>Order ID: {{ order.id }}</h5>
+          <p>Status: {{ order.statusString }}</p>
+          <p>Created Date: {{ order.createdDate | date:'medium' }}</p>
+        </div>
+        <div class="card-body">
+          <p><strong>User Email:</strong> {{ order.email }}</p>
+          <p><strong>Payment ID:</strong> {{ order.paymentId }}</p>
+          <p><strong>Updated Date:</strong> {{ order.updatedDate | date:'medium' }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

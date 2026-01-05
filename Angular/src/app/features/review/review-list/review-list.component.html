@@ -1,0 +1,33 @@
+<div class="container mt-4">
+  <h2 class="mb-3">Review List</h2>
+
+  <!-- Review Cards -->
+  <div class="row">
+    <div class="col-md-4" *ngFor="let review of reviews">
+      <div class="card mb-3 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">Rating: {{ review.rating }} / 5</h5>
+          <p class="card-text text-black">
+            <strong>
+              {{
+                review.productType === 'flight' ? 'Flight' :
+                review.productType === 'package' ? 'Package' :
+                'Hotel'
+              }}:
+            </strong>
+            {{
+              review.productName ||
+              (review.productType === 'flight' ? 'Unknown Flight' :
+               review.productType === 'package' ? 'Unknown Package' :
+               'Unknown Hotel')
+            }}<br />
+            <strong>Comment:</strong> {{ review.comment }}<br />
+            <strong>User ID:</strong> {{ review.userID }}<br />
+            <strong>Timestamp:</strong> {{ review.timestamp | date:'medium' }}
+          </p>
+          <button class="btn btn-sm btn-danger" (click)="deleteReview(review.reviewID)">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

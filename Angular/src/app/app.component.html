@@ -1,0 +1,100 @@
+<nav
+  class="navbar navbar-expand-lg navbar-dark bg-black shadow-sm animate__animated animate__fadeInDown"
+  style="position: fixed; top: 0; width: 100%; z-index: 10"
+>
+  <div class="container">
+    <a class="navbar-brand fw-bold fs-3" routerLink="/">MapMyMoments</a>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      (click)="isNavbarCollapsed = !isNavbarCollapsed"
+      [attr.aria-expanded]="isNavbarCollapsed"
+      aria-label="Toggle navigation"
+    >
+      <span [ngClass]="{ 'navbar-toggler-icon': !isNavbarCollapsed, 'close-icon': isNavbarCollapsed }"></span>
+    </button>
+
+    <div class="collapse navbar-collapse custom-collapse"
+      [ngClass]="{ show: isNavbarCollapsed }"
+      id="navbarNav">
+
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/about">About</a>
+        </li>
+
+        <!-- ✅ Admin panel visible only for Admins -->
+        <li class="nav-item" *ngIf="hasAdminRole() || hasWriterRole() ">
+          <a class="nav-link" routerLink="/admin">Admin</a>
+        </li>
+
+        <!-- ✅ Book Now visible only for non-admin users -->
+        <li class="nav-item" *ngIf="!hasAdminRole()">
+          <button mat-button [matMenuTriggerFor]="bookMenu">Book Now</button>
+          <mat-menu #bookMenu="matMenu">
+            <button mat-menu-item routerLink="/hoteluser">Book Hotel</button>
+            <button mat-menu-item routerLink="/flightuser">Book Flight</button>
+            <button mat-menu-item routerLink="/packageuser">Book Package</button>
+          </mat-menu>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav">
+        <ng-container *ngIf="!isLoggedIn(); else loggedInTemplate">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/login">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/register">Register</a>
+          </li>
+        </ng-container>
+
+        <!-- ✅ Cart visible only for non-admin users -->
+        <ng-container *ngIf="user && !hasAdminRole()">
+          <li class="nav-item d-flex align-items-center me-3 ml-2">
+            <button class="btn cart-btn" routerLink="/cart" title="View Cart">
+              <i class="bi bi-cart-fill"></i>
+              <span class="cart-count">{{ cartCount$ | async }}</span>
+            </button>
+          </li>
+        </ng-container>
+
+        <ng-template #loggedInTemplate>
+          <li class="nav-item" *ngIf="!hasAdminRole()">
+            <a class="nav-link" routerLink="/orders">My Bookings</a>
+          </li>
+          <li class="nav-item" *ngIf="!hasAdminRole()">
+            <a class="nav-link" routerLink="/user-review">Reviews</a>
+          </li>
+          <li class="nav-item d-flex align-items-center">
+            <a
+              [routerLink]="['/profile']"
+              class="btn btn-outline-secondary px-2 me-2 d-flex align-items-center text-white"
+            >
+              <i class="bi bi-person-circle me-1"></i>
+              {{ user?.email }}
+            </a>
+          </li>
+          <li class="nav-item">
+            <button
+              class="btn btn-outline-dark btn-sm shadow-xl mt-1"
+              (click)="onLogout()"
+            >
+              Logout
+            </button>
+          </li>
+        </ng-template>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="global-background"></div>
+
+<div class="container" style="padding-top: 70px">
+  <router-outlet></router-outlet>
+</div>

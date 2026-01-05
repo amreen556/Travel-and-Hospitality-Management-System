@@ -1,0 +1,38 @@
+<div class="container mt-4">
+  <h2 class="mb-3">Package List</h2>
+  <button class="btn btn-primary mb-3" (click)="addPackage()">Add Package</button>
+
+  <div class="row">
+    <div class="col-md-4" *ngFor="let package of packages">
+      <div class="card mb-3">
+        <img
+          *ngIf="package.imageUrl"
+          [src]="package.imageUrl"
+          class="card-img-top"
+          alt="Package Image"
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ package.name }}</h5>
+          <p class="card-text text-black">
+            Hotels: {{ package.includedHotels }}<br />
+            Flights: {{ package.includedFlights }}<br />
+            Activities: {{ package.activities }}<br />
+            Price: ₹{{ package.price }}
+          </p>
+          <button
+            class="btn btn-warning me-2"
+            (click)="editPackage(package.packageID)"
+          >
+            Edit
+          </button>
+          <button
+            class="btn btn-danger"
+            (click)="deletePackage(package.packageID)"
+          >
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

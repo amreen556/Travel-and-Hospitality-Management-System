@@ -1,0 +1,30 @@
+.star-rating {
+  display: flex;
+  cursor: pointer;
+}
+
+.star {
+  font-size: 24px;
+  color: #ddd;
+  margin: 0 2px;
+}
+
+.star.filled {
+  color: #ffc107;
+}
+
+.star-display {
+  display: flex;
+}
+
+.star-display .star {
+  cursor: default;
+}
+
+p{
+  color: #000;
+}
+
+label, h4, h2{
+  color: white;
+}

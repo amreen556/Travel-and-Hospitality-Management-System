@@ -1,0 +1,15 @@
+<p>edit-flight works!</p>
+<div class="container mt-4">
+  <h2 class="mb-3">Edit Flight</h2>
+  <form [formGroup]="flightForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3" *ngFor="let field of ['airline', 'departure', 'arrival', 'price', 'availability']">
+      <label [for]="field" class="form-label">{{ field | titlecase }}</label>
+      <input [type]="field === 'airline' || field === 'departure' || field === 'arrival' ? 'text' : 'number'"
+             [id]="field"
+             [formControlName]="field"
+             class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-success" [disabled]="flightForm.invalid">Update Flight</button>
+    <button type="button" class="btn btn-secondary ms-2" routerLink="/flights">Cancel</button>
+  </form>
+</div>

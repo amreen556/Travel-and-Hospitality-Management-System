@@ -1,0 +1,23 @@
+<div class="container mt-4">
+  <h2 class="mb-3">Add New Itinerary</h2>
+
+  <form [formGroup]="itineraryForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="userID" class="form-label">User ID</label>
+      <input type="text" id="userID" formControlName="userID" class="form-control" placeholder="Enter User ID" />
+    </div>
+
+    <div class="mb-3">
+      <label for="packageID" class="form-label">Package ID</label>
+      <input type="text" id="packageID" formControlName="packageID" class="form-control" placeholder="Enter Package ID" />
+    </div>
+
+    <div class="mb-3">
+      <label for="customizationDetails" class="form-label">Customization Details</label>
+      <textarea id="customizationDetails" formControlName="customizationDetails" class="form-control" rows="4" placeholder="Enter customization details"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-success" [disabled]="itineraryForm.invalid">Add Itinerary</button>
+    <button type="button" class="btn btn-secondary ms-2" routerLink="/itineraries">Cancel</button>
+  </form>
+</div>

@@ -1,0 +1,153 @@
+
+.about-us-container {
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hero Header */
+.hero-header {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1200&q=80');
+  background-size: cover;
+  background-position: center;
+  padding: 6rem 2rem;
+}
+
+/* Why Choose Us Section */
+.why-choose-us-section {
+  --bs-primary-rgb: 13, 110, 253; /* Define bootstrap primary color for use in rgba */
+}
+
+.feature-card {
+  background-color: #ffffff;
+  border: 1px solid #e9ecef;
+  border-radius: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  border-color: #0d6efd; /* Bootstrap primary color */
+}
+
+.feature-icon-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background-color: rgba(var(--bs-primary-rgb), 0.1);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.feature-icon-img {
+  width: 45px;
+  height: 45px;
+}
+
+.feature-card:hover .feature-icon-wrapper {
+  background-color: #0d6efd; /* Bootstrap primary color */
+  transform: rotate(-15deg) scale(1.1);
+}
+
+/* Stats Section */
+.stats-section i {
+  transition: transform 0.3s ease;
+}
+.stats-section .col-md-4:hover i {
+  transform: scale(1.2);
+}
+
+/* Service Card Section */
+.service-card {
+  transition: transform 0.3s, box-shadow 0.3s;
+  border: none;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.service-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+}
+
+.service-card-img-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.service-card .card-img-top {
+  height: 200px;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.service-card-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.service-card:hover .service-card-overlay {
+    opacity: 1;
+}
+
+/* Team Section */
+.team-img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin: -60px auto 0;
+  border: 4px solid white;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+
+.team-member .card {
+  border-radius: 15px;
+  padding-top: 60px;
+  transition: all 0.3s ease;
+}
+
+.team-member:hover .card {
+  background-color: #f8f9fa;
+}
+
+.team-member:hover .team-img {
+  transform: scale(1.1);
+}
+
+.team-social a {
+  font-size: 1.2rem;
+  transition: color 0.3s ease;
+}
+
+.team-social a:hover {
+  color: #0056b3; /* Darker primary */
+}
+
+/* CTA Section */
+.cta-section .btn {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.cta-section .btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}

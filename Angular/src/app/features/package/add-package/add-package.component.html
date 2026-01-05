@@ -1,0 +1,85 @@
+<div class="container mt-4">
+  <h2 class="mb-3">Add New Package</h2>
+
+  <form [formGroup]="packageForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="name" class="form-label">Package Name</label>
+      <input
+        type="text"
+        id="name"
+        formControlName="name"
+        class="form-control"
+        placeholder="Enter package name"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="includedHotels" class="form-label">Included Hotels</label>
+      <input
+        type="text"
+        id="includedHotels"
+        formControlName="includedHotels"
+        class="form-control"
+        placeholder="Hotel names separated by commas"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="includedFlights" class="form-label">Included Flights</label>
+      <input
+        type="text"
+        id="includedFlights"
+        formControlName="includedFlights"
+        class="form-control"
+        placeholder="Flight details"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="activities" class="form-label">Activities</label>
+      <input
+        type="text"
+        id="activities"
+        formControlName="activities"
+        class="form-control"
+        placeholder="Activities included"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="price" class="form-label">Price (₹)</label>
+      <input
+        type="number"
+        id="price"
+        formControlName="price"
+        class="form-control"
+        placeholder="Enter price"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="imageFile" class="form-label">Upload Image</label>
+      <input
+        type="file"
+        id="imageFile"
+        (change)="onFileSelected($event)"
+        class="form-control"
+      />
+    </div>
+
+    <button
+      type="submit"
+      class="btn btn-success"
+      [disabled]="packageForm.invalid"
+    >
+      Add Package
+    </button>
+    <button
+      type="button"
+      class="btn btn-secondary ms-2"
+      routerLink="/packages"
+    >
+      Cancel
+    </button>
+  </form>
+</div>

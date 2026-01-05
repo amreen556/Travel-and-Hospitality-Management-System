@@ -1,0 +1,86 @@
+<div class="container mt-4">
+  <h2 class="mb-3">Add New Flight</h2>
+
+  <form [formGroup]="flightForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="airline" class="form-label">Airline</label>
+      <input
+        type="text"
+        id="airline"
+        formControlName="airline"
+        class="form-control"
+        placeholder="Enter airline name"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="departure" class="form-label">Departure Location</label>
+      <input
+        type="text"
+        id="departure"
+        formControlName="departure"
+        class="form-control"
+        placeholder="Enter departure location"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="arrival" class="form-label">Arrival Location</label>
+      <input
+        type="text"
+        id="arrival"
+        formControlName="arrival"
+        class="form-control"
+        placeholder="Enter arrival location"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="price" class="form-label">Price (₹)</label>
+      <input
+        type="number"
+        id="price"
+        formControlName="price"
+        class="form-control"
+        placeholder="Enter ticket price"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="availability" class="form-label">Availability</label>
+      <input
+        type="number"
+        id="availability"
+        formControlName="availability"
+        class="form-control"
+        placeholder="Enter available seats"
+      />
+    </div>
+
+    <!-- ← Here’s the image‐upload field -->
+    <div class="mb-3">
+      <label for="imageFile" class="form-label">Upload Image</label>
+      <input
+        type="file"
+        id="imageFile"
+        (change)="onFileSelected($event)"
+        class="form-control"
+      />
+    </div>
+
+    <button
+      type="submit"
+      class="btn btn-success"
+      [disabled]="flightForm.invalid"
+    >
+      Add Flight
+    </button>
+    <button
+      type="button"
+      class="btn btn-secondary ms-2"
+      routerLink="/flights"
+    >
+      Cancel
+    </button>
+  </form>
+</div>

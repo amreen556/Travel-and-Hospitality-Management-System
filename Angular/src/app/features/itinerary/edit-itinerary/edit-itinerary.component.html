@@ -1,0 +1,14 @@
+<div class="container mt-4">
+  <h2 class="mb-3">Edit Itinerary</h2>
+  <form [formGroup]="itineraryForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3" *ngFor="let field of ['userID', 'packageID', 'customizationDetails']">
+      <label [for]="field" class="form-label">{{ field | titlecase }}</label>
+      <input [type]="field === 'customizationDetails' ? 'text' : 'text'"
+             [id]="field"
+             [formControlName]="field"
+             class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-success" [disabled]="itineraryForm.invalid">Update Itinerary</button>
+    <button type="button" class="btn btn-secondary ms-2" routerLink="/itineraries">Cancel</button>
+  </form>
+</div>

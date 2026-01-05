@@ -1,0 +1,50 @@
+<div class="container mt-4">
+  <div *ngIf="!isPaymentSuccessful">
+    <h2>Payment Details</h2>
+    <div class="row">
+      <div class="col-md-8">
+        <!-- <h4>Hotel Details</h4> -->
+        <div class="card mb-3" *ngFor="let item of cartItems">
+          <div class="card-body">
+            <h5 class="card-title">{{ item.name }}</h5>
+            <p class="card-text">Location: {{ item.location }}</p>
+            <p class="card-text">Price: ₹{{ item.unitPrice }}</p>
+            <p class="card-text">Quantity: {{ item.quantity }}</p>
+            <p class="card-text">Total: ₹{{ item.unitPrice * item.quantity }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Order Summary</h5>
+            <p class="card-text">Total Amount: ₹{{ totalAmount }}</p>
+            <div class="mb-3">
+              <label for="paymentType" class="form-label">Payment Type</label>
+              <select class="form-select" id="paymentType" [(ngModel)]="paymentType" name="paymentType">
+                <option value="">Select Payment Type</option>
+                <option value="credit_card">Credit Card</option>
+                <option value="debit_card">Debit Card</option>
+                <option value="net_banking">Net Banking</option>
+                <option value="upi">UPI</option>
+              </select>
+            </div>
+            <button class="btn btn-success w-100" (click)="onPaymentSubmit()">Pay Now</button>
+            <button class="btn btn-secondary w-100 mt-2" (click)="goBackToCart()">Back to Cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="isPaymentSuccessful" class="text-center">
+    <div class="alert alert-success" role="alert">
+      <h4 class="alert-heading">Payment Successful!</h4>
+      <p>Thank you for your booking. Your transaction has been completed successfully.</p>
+      <hr>
+      <p class="mb-0">Transaction ID: {{ transactionId }}</p>
+      <p class="mb-0">Total Amount: ₹{{ paidAmount }}</p>
+    </div>
+    <button class="btn btn-primary" (click)="goToHome()">Go to Home</button>
+  </div>
+</div>

@@ -1,0 +1,80 @@
+<div class="cart-container text-black">
+  <h2>Your Cart</h2>
+
+  <div *ngIf="hasItems()" class="mb-3">
+    <button class="btn btn-secondary" (click)="clearCart()">Clear Cart</button>
+  </div>
+
+  <div *ngIf="!hasItems()" class="empty-cart">
+    <p>Your cart is empty.</p>
+  </div>
+
+  <!-- 🏨 Hotel Items -->
+  <div *ngIf="hotelItems.length > 0">
+    <h3><strong>Hotels</strong></h3>
+    <div class="cart-item" *ngFor="let item of hotelItems">
+      <img *ngIf="item.imageUrl" [src]="item.imageUrl" [alt]="item.name" class="cart-item-image">
+      <div class="cart-item-details text-black">
+        <h5>{{ item.name }}</h5>
+        <p *ngIf="item.location">{{ item.location }}</p>
+        <p>Price per night: ₹{{ item.unitPrice }}</p>
+        <div class="quantity-controls">
+          <button class="btn btn-sm btn-outline-secondary" (click)="decreaseQuantity(item.productId)">-</button>
+          <span class="mx-2">Rooms: {{ item.quantity }}</span>
+          <button class="btn btn-sm btn-outline-secondary" (click)="increaseQuantity(item.productId)">+</button>
+        </div>
+        <p>Total: ₹{{ item.unitPrice * item.quantity }}</p>
+      </div>
+      <button class="btn btn-danger" (click)="removeFromCart(item.productId)">Remove</button>
+    </div>
+  </div>
+
+  <!-- ✈️ Flight Items -->
+  <div *ngIf="flightItems.length > 0">
+    <h3><strong>Flights</strong></h3>
+    <div class="cart-item" *ngFor="let item of flightItems">
+      <img *ngIf="item.imageUrl" [src]="item.imageUrl" [alt]="item.name" class="cart-item-image">
+      <div class="cart-item-details">
+        <h5>{{ item.name }}</h5>
+        <p>{{ item.location }}</p>
+        <p>Price: ₹{{ item.unitPrice }}</p>
+        <div class="quantity-controls">
+          <button class="btn btn-sm btn-outline-secondary" (click)="decreaseQuantity(item.productId)">-</button>
+          <span class="mx-2">Seats: {{ item.quantity }}</span>
+          <button class="btn btn-sm btn-outline-secondary" (click)="increaseQuantity(item.productId)">+</button>
+        </div>
+        <p>Total: ₹{{ item.unitPrice * item.quantity }}</p>
+      </div>
+      <button class="btn btn-danger" (click)="removeFromCart(item.productId)">Remove</button>
+    </div>
+  </div>
+
+  <!-- 🧳 Package Items -->
+  <div *ngIf="packageItems.length > 0">
+    <h3><strong>Packages</strong></h3>
+    <div class="cart-item" *ngFor="let item of packageItems">
+      <img *ngIf="item.imageUrl" [src]="item.imageUrl" [alt]="item.name" class="cart-item-image">
+      <div class="cart-item-details">
+        <h5>{{ item.name }}</h5>
+        <p>{{ item.location }}</p>
+        <div *ngIf="item.includedHotels || item.includedFlights">
+          <p>Included Hotels: {{ item.includedHotels }}</p>
+          <p>Included Flights:{{ item.includedFlights }}</p>
+        </div>
+        <p>Price: ₹{{ item.unitPrice }}</p>
+        <div class="quantity-controls">
+          <button class="btn btn-sm btn-outline-secondary" (click)="decreaseQuantity(item.productId)">-</button>
+          <span class="mx-2">Packages: {{ item.quantity }}</span>
+          <button class="btn btn-sm btn-outline-secondary" (click)="increaseQuantity(item.productId)">+</button>
+        </div>
+        <p>Total: ₹{{ item.unitPrice * item.quantity }}</p>
+      </div>
+      <button class="btn btn-danger" (click)="removeFromCart(item.productId)">Remove</button>
+    </div>
+  </div>
+
+  <div class="cart-total" *ngIf="hasItems()">
+    <h4 class="text-white">Total: ₹{{ getTotalPrice() }}</h4>
+        <button class="btn btn-success" (click)="buyNow()">Buy Now</button>
+  </div>
+</div>

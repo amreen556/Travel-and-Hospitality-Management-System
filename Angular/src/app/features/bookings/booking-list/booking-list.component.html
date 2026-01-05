@@ -1,0 +1,43 @@
+<div class="container mt-4">
+  <h2 class="mb-3">Bookings List</h2>
+  <button class="btn btn-primary mb-3" (click)="addBooking()">Add Booking</button>
+
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover">
+      <thead class="table-light">
+        <tr>
+          <th>#</th>
+          <th>Booking ID</th>
+          <th>User ID</th>
+          <th>Type</th>
+          <th>Status</th>
+          <th>Payment ID</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let booking of bookings; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ booking.bookingID }}</td>
+          <td>{{ booking.userID }}</td>
+          <td>{{ booking.type }}</td>
+          <td>
+            <span class="badge"
+                  [ngClass]="{
+                    'bg-warning text-dark': booking.status === 'Pending',
+                    'bg-success': booking.status === 'Confirmed',
+                    'bg-danger': booking.status === 'Cancelled'
+                  }">
+              {{ booking.status }}
+            </span>
+          </td>
+        <td>{{ booking.payment2Id || 'N/A' }}</td>
+          <td>
+            <button class="btn btn-sm btn-outline-primary me-2" (click)="editBooking(booking.bookingID)">Edit</button>
+            <button class="btn btn-sm btn-outline-danger" (click)="deleteBooking(booking.bookingID)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,65 @@
+<div class="container my-5">
+  <h2 class="text-center mb-4">User Extra Info</h2>
+  <button class="btn btn-success mb-3" (click)="newInfo()">Add New User</button>
+
+  <div *ngIf="loading" class="text-center my-3">
+    <span class="spinner-border"></span> Loading...
+  </div>
+  <div *ngIf="error" class="alert alert-danger text-center">{{ error }}</div>
+
+  <table class="table table-bordered table-striped" *ngIf="infos.length > 0">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Contact Number</th>
+        <th>Role</th>
+        <th>Password</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let info of infos">
+        <td>{{ info.Name }}</td>
+        <td>{{ info.Email }}</td>
+        <td>{{ info.ContactNumber }}</td>
+        <td>{{ info.Role }}</td>
+        <td>{{ info.Password }}</td>
+        <td>
+          <button class="btn btn-primary btn-sm" (click)="selectInfo(info)">Edit</button>
+          <button class="btn btn-danger btn-sm" (click)="deleteInfo(info.UserID ?? '')">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="selectedInfo" class="card mt-4">
+    <div class="card-body">
+      <h5 class="card-title">{{ isEditing ? 'Edit' : 'Add' }} User Info</h5>
+      <form (ngSubmit)="saveInfo()" #infoForm="ngForm">
+        <div class="mb-3">
+          <label>Name</label>
+          <input class="form-control" [(ngModel)]="selectedInfo.Name" name="Name" required>
+        </div>
+        <div class="mb-3">
+          <label>Email</label>
+          <input class="form-control" [(ngModel)]="selectedInfo.Email" name="Email" required>
+        </div>
+        <div class="mb-3">
+          <label>Contact Number</label>
+          <input class="form-control" [(ngModel)]="selectedInfo.ContactNumber" name="ContactNumber">
+        </div>
+        <div class="mb-3">
+          <label>Role</label>
+          <input class="form-control" [(ngModel)]="selectedInfo.Role" name="Role">
+        </div>
+        <div class="mb-3">
+          <label>Password</label>
+          <input class="form-control" [(ngModel)]="selectedInfo.Password" name="Password">
+        </div>
+        <button type="submit" class="btn btn-success me-2">Save</button>
+        <button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
+      </form>
+    </div>
+  </div>
+</div>

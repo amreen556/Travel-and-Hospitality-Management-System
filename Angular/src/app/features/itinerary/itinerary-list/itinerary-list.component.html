@@ -1,0 +1,20 @@
+<div class="container mt-4">
+  <h2 class="mb-3">Itinerary List</h2>
+  <button class="btn btn-primary mb-3" (click)="addItinerary()">Add Itinerary</button>
+  <div class="row">
+    <div class="col-md-4" *ngFor="let itinerary of itineraries">
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title">Itinerary ID: {{ itinerary.itineraryID }}</h5>
+          <p class="card-text">
+            User ID: {{ itinerary.userID }}<br>
+            Package ID: {{ itinerary.packageID }}<br>
+            Customization: {{ itinerary.customizationDetails }}
+          </p>
+          <button class="btn btn-warning me-2" (click)="editItinerary(itinerary.itineraryID)">Edit</button>
+          <button class="btn btn-danger" (click)="deleteItinerary(itinerary.itineraryID)">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
